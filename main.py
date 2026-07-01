@@ -28,7 +28,7 @@ except ImportError:
 
 class DynamicPdfApp(MDApp):
     # REPLACE THIS with the Raw link to your books.json file on GitHub
-    json_url = "https://raw.githubusercontent.com/SultanAhmmed/Folio/refs/heads/main/books.json"
+    json_url = "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books.json"
 
     def build(self):
         self.theme_cls.primary_palette = "DeepPurple"
@@ -116,8 +116,15 @@ class DynamicPdfApp(MDApp):
                 text=title, font_style="H6", theme_text_color="Primary", halign="left"
             )
         )
+
+        # FIXED LINE: Removed wrap=True, added text_size for proper wrapping
         card.add_widget(
-            MDLabel(text=desc, theme_text_color="Secondary", halign="left", wrap=True)
+            MDLabel(
+                text=desc,
+                theme_text_color="Secondary",
+                halign="left",
+                text_size=(dp(250), None),
+            )
         )
 
         # Check if already downloaded in private storage

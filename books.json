@@ -28,5 +28,10 @@
     "title": "The Silent Patient",
     "desc": "A psychological thriller by Alex Michaelides about a woman who stops speaking after a shocking crime.",
     "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/The Silent Patient - Alex Michaelides.pdf"
+  },
+  {
+    "title": "A Good Girl's Guide to Murder",
+    "desc": "A gripping mystery novel by Peter Swanson about a high school student investigating a murder.",
+    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/A Good Girl’s Guide to Murder.pdf"
   }
 ]
