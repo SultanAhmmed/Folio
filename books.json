@@ -2,27 +2,27 @@
   {
     "title": "And Then There Were None",
     "desc": "A classic mystery novel by Agatha Christie about ten strangers stranded on an island.",
-    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/And Then There Were None.pdf"
+    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/AndThenThereWereNone.pdf"
   },
   {
     "title": "Murder on the Orient Express",
     "desc": "Agatha Christie's famous detective story featuring Hercule Poirot on a snowbound train.",
-    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/Murder on the Orient Express.pdf"
+    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/MurderontheOrientExpress.pdf"
   },
   {
     "title": "One of Us Is Lying",
     "desc": "A gripping young adult mystery by Karen M. McManus about four students and a deadly secret.",
-    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/One of Us Is Lying.pdf"
+    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/OneofUsIsLying.pdf"
   },
   {
     "title": "The Curious Incident of the Dog in the Night-Time",
     "desc": "A unique mystery novel by Mark Haddon told from the perspective of a boy with autism.",
-    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/The Curious Incident of the Dog in the Night-Time.pdf"
+    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/TheCuriousIncidentoftheDogintheNightTime.pdf"
   },
   {
     "title": "The Hound of the Baskervilles",
     "desc": "Sir Arthur Conan Doyle's most famous Sherlock Holmes adventure involving a supernatural hound.",
-    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/The Hound of The Baskervilles.pdf"
+    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/TheHoundofTheBaskervilles.pdf"
   },
   {
     "title": "The Silent Patient",
@@ -32,6 +32,6 @@
   {
     "title": "A Good Girl's Guide to Murder",
     "desc": "A gripping mystery novel by Peter Swanson about a high school student investigating a murder.",
-    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/A Good Girl’s Guide to Murder.pdf"
+    "url": "https://raw.githubusercontent.com/SultanAhmmed/Folio/main/books/AGoodGirlsGuidetoMurder.pdf"
   }
 ]
