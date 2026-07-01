@@ -1,6 +1,7 @@
 import os
 import json
 import threading
+import urllib.parse
 import urllib.request
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -98,7 +99,7 @@ class DynamicPdfApp(MDApp):
         url = book.get("url", "")
 
         # Extract filename from URL (e.g., "gatsby.pdf")
-        filename = url.split("/")[-1]
+        filename = url.split("/")[-1].replace(" ", "_")
 
         # Modern Card Design
         card = MDCard(
@@ -165,7 +166,12 @@ class DynamicPdfApp(MDApp):
 
     def download_file(self, url, file_path, button):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            # Convert spaces to %20 so the URL is valid for downloading
+            safe_url = urllib.parse.quote(url, safe=":/")
+
+            req = urllib.request.Request(
+                safe_url, headers={"User-Agent": "Mozilla/5.0"}
+            )
             with urllib.request.urlopen(req) as response:
                 with open(file_path, "wb") as out_file:
                     out_file.write(response.read())
