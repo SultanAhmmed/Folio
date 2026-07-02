@@ -2,6 +2,9 @@
 
 A modern, dark-themed Android application built with Python (KivyMD) that allows users to browse, download, and read mystery novels directly from a remote JSON source. Features include offline reading, favorites management, smart search, and dynamic content updates without requiring APK rebuilds.
 
+# Why I built this?
+I wanted to read English books based on my own preference to improve my English, but I didn't have the time or money to buy physical books. So I thought: why not build an app for my own use? After building it, I uploaded it to GitHub so others who are interested could explore it too.
+
 ![Python](https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python)
 ![KivyMD](https://img.shields.io/badge/KivyMD-1.1.1-green?style=for-the-badge&logo=kivy)
 ![Android](https://img.shields.io/badge/Platform-Android-brightgreen?style=for-the-badge&logo=android)
