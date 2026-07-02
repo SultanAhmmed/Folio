@@ -1,3 +1,6 @@
+import certifi, os
+os.environ['SSL_CERT_FILE'] = certifi.where()
+
 import os
 import json
 import threading

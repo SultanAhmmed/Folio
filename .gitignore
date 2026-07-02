@@ -10,5 +10,4 @@ wheels/
 .venv
 bin
 .buildozer
-buildozer.spec
 test.py
