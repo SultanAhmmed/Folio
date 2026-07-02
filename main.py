@@ -789,20 +789,39 @@ class DynamicPdfApp(MDApp):
     def open_pdf(self, file_path):
         if ANDROID:
             try:
-                file = File(file_path)
-                uri = Uri.fromFile(file)
-                intent = Intent()
-                intent.setAction(Intent.ACTION_VIEW)
+                from jnius import autoclass
+                File = autoclass('java.io.File')
+                
+                # Try AndroidX FileProvider first, fallback to older Support library
+                try:
+                    FileProvider = autoclass('androidx.core.content.FileProvider')
+                except Exception:
+                    FileProvider = autoclass('android.support.v4.content.FileProvider')
+                    
+                context = PythonActivity.mActivity.getApplicationContext()
+                # The authority matches the default FileProvider in python-for-android's manifest
+                authority = context.getPackageName() + ".fileprovider"
+                
+                java_file = File(file_path)
+                # Generate a secure content:// URI for the private file
+                uri = FileProvider.getUriForFile(context, authority, java_file)
+                
+                intent = Intent(Intent.ACTION_VIEW)
                 intent.setDataAndType(uri, "application/pdf")
+                # Grant the PDF viewer temporary permission to read this specific file
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                
                 PythonActivity.mActivity.startActivity(intent)
+                
             except Exception as e:
                 print(f"[ERROR] Open PDF failed: {e}")
-                self.toast("Could not open PDF", error=True)
+                import traceback
+                traceback.print_exc()
+                self.toast("Could not open PDF. Ensure AndroidX is enabled in buildozer.spec.", error=True)
         else:
             print(f"PC Test: Would open {file_path}")
             self.toast(f"Would open: {os.path.basename(file_path)}")
-
+            
     # -- states ---------------------------------------------------------------
     @mainthread
     def show_loading(self):
