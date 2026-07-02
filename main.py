@@ -3,9 +3,16 @@ os.environ['SSL_CERT_FILE'] = certifi.where()
 
 import os
 import json
+import ssl
 import threading
 import urllib.parse
 import urllib.request
+
+# explicit SSL context using certifi's cert bundle — on some Android
+# python-for-android builds, the SSL_CERT_FILE env var alone is not
+# picked up by the bundled openssl, causing silent SSLCertVerificationError
+# on every network call while the same code works fine on PC.
+SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.card import MDCard
@@ -467,12 +474,12 @@ class DynamicPdfApp(MDApp):
     def fetch_books(self):
         try:
             req = urllib.request.Request(self.json_url, headers={"User-Agent": "Mozilla/5.0"})
-            with urllib.request.urlopen(req, timeout=30) as response:
+            with urllib.request.urlopen(req, timeout=30, context=SSL_CONTEXT) as response:
                 data = json.loads(response.read().decode())
             self.populate_books(data)
         except Exception as e:
             print(f"[ERROR] Fetch books failed: {e}")
-            self.show_error()
+            self.show_error(str(e))
 
     @mainthread
     def populate_books(self, books_data):
@@ -731,7 +738,7 @@ class DynamicPdfApp(MDApp):
         tmp_path = file_path + ".part"
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-            with urllib.request.urlopen(req, timeout=60) as response:
+            with urllib.request.urlopen(req, timeout=60, context=SSL_CONTEXT) as response:
                 total = response.getheader("Content-Length")
                 total = int(total) if total else 0
                 written = 0
@@ -812,9 +819,9 @@ class DynamicPdfApp(MDApp):
         self.books_list.add_widget(loading_box)
 
     @mainthread
-    def show_error(self):
+    def show_error(self, detail=""):
         self.books_list.clear_widgets()
-        error_box = MDBoxLayout(orientation="vertical", spacing=dp(24), size_hint_y=None, height=dp(290))
+        error_box = MDBoxLayout(orientation="vertical", spacing=dp(24), size_hint_y=None, height=dp(320))
         error_box.add_widget(
             MDIcon(icon="wifi-off", halign="center", font_size=dp(64), theme_text_color="Custom", text_color=COLOR_GOLD_DIM)
         )
@@ -822,6 +829,11 @@ class DynamicPdfApp(MDApp):
             MDLabel(text="Failed to load books.\nPlease check your internet.", halign="center",
                     theme_text_color="Custom", text_color=COLOR_TEXT_ON_DARK, font_style="Subtitle1")
         )
+        if detail:
+            error_box.add_widget(
+                MDLabel(text=detail, halign="center", theme_text_color="Custom",
+                        text_color=COLOR_GOLD_DIM, font_style="Caption")
+            )
         retry_btn = MDRaisedButton(
             text="RETRY", icon="refresh", theme_text_color="Custom",
             md_bg_color=COLOR_GOLD, text_color=COLOR_WHITE, rounded_button=True,
