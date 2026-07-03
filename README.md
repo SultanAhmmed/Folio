@@ -8,7 +8,7 @@ A modern, dark-themed Android application built with Python (KivyMD) that allows
 ![Python](https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python)
 ![KivyMD](https://img.shields.io/badge/KivyMD-1.1.1-green?style=for-the-badge&logo=kivy)
 ![Android](https://img.shields.io/badge/Platform-Android-brightgreen?style=for-the-badge&logo=android)
-![License](https://img.shields.io/badge/License-GPL-yellow?style=for-the-badge)
+![License](https://img.shields.io/badge/License-GNU-yellow?style=for-the-badge)
 
 ## ✨ Key Features
 
